@@ -20,16 +20,19 @@ void	test_ex0(char* (*test_ex)(char*))
 	char *dup1 = test_ex(src1);
 	printf("Our duplicated string is: %s\n", dup1);
 	assert(strcmp(src1, dup1) == 0);
+	free(dup1);
 
 	printf("Our original string is: %s\n", src2);
 	char *dup2 = test_ex(src2);
 	printf("Our duplicated string is: %s\n", dup2);
 	assert(strcmp(src2, dup2) == 0);
+	free(dup2);
 
 	printf("Testing NULL pointer:\n");
 	char *dup3 = test_ex(null_ptr);
 	assert(dup3 == NULL);
 	printf("NULL pointer working!\n");
+	free(dup3);
 
 	printf("\nTests Ex0 Passed!\n\n");
 }
