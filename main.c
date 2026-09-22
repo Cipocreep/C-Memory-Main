@@ -228,6 +228,29 @@ void	test_ex4(char *(*test_ex)(char *, char *, char *))
 	printf("Our converted number: %s\n\n", converted_nbr);
 	assert(strcmp(converted_nbr, "111") == 0);
 
+
+	converted_nbr = test_ex("-6f", "0123456789abcdef", "0123456789ABCDEF");
+	printf("Our original base: %s\n", "0123456789abcdef");
+	printf("Our base to convert to: %s\n", "0123456789ABCDEF");
+	printf("Our original number: %s\n", "-6f");
+	printf("Our converted number: %s\n\n", converted_nbr);
+	assert(strcmp(converted_nbr, "-6F") == 0);
+
+
+	converted_nbr = test_ex("-b6f", "0123456789abcdef", "0123456789ABCDEF");
+	printf("Our original base: %s\n", "0123456789abcdef");
+	printf("Our base to convert to: %s\n", "0123456789ABCDEF");
+	printf("Our original number: %s\n", "-b6f");
+	printf("Our converted number: %s\n\n", converted_nbr);
+	assert(strcmp(converted_nbr, "-B6F") == 0);
+
+	converted_nbr = test_ex("&#", "@#*()$^&", "413J");
+	printf("Our original base: %s\n", "@#*()$^&");
+	printf("Our base to convert to: %s\n", "413J");
+	printf("Our original number: %s\n", "&#");
+	printf("Our converted number: %s\n\n", converted_nbr);
+	assert(strcmp(converted_nbr, "J31") == 0);
+
 	char nbr5[33] = "01111111111111111111111111111111";
 	char base_from2[3] = "01";
 	char base_to2[11] = "0123456789";
