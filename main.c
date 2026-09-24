@@ -314,19 +314,20 @@ void	test_ex5(char **(*test_ex)(char *, char *))
 	char charset[5] = "#/6*";
 	char string2[29] = "#Hello#/truc/6machin6#Hello#";
 	char string3[] = "#Hello/truc/6machin6Hello#";
+	char string4[] = "Hello#/truc/6machin";
 
 	int ite = 0;
 	char **split;
 	char **array_of_arrays = malloc(8 * 4);
 	// char array_inside_array = malloc(8);
-	array_of_arrays[0] = "#Hello#";
-	array_of_arrays[1] = "/truc/";
-	array_of_arrays[2] = "6machin6";
-	array_of_arrays[3] = "#Hello#";
+	array_of_arrays[0] = "Hello";
+	array_of_arrays[1] = "truc";
+	array_of_arrays[2] = "machin";
+	array_of_arrays[3] = "Hello";
 	split = test_ex(string, charset);
 	printf("Our original string: %s\n", string);
 	printf("Our separators: %s\n", charset);
-	while (ite < 3)
+	while (split[ite])
 	{
 		printf("Our string: \n%s\n", split[ite]);
 		printf("Should be identical to: \n%s\n", array_of_arrays[ite]);
@@ -336,15 +337,25 @@ void	test_ex5(char **(*test_ex)(char *, char *))
 	}
 	free(split);
 
-	array_of_arrays[1] = "#Hello#";
-	array_of_arrays[2] = "/truc/";
-	array_of_arrays[3] = "6machin6";
+	ite = 0;
+	split = test_ex(string4, charset);
+	printf("Our original string: %s\n", string4);
+	printf("Our separators: %s\n", charset);
+	while (split[ite])
+	{
+		printf("Our string: \n%s\n", split[ite]);
+		printf("Should be identical to: \n%s\n", array_of_arrays[ite]);
+		assert(strcmp(array_of_arrays[ite], split[ite]) == 0);
+		free(split[ite]);
+		ite++;
+	}
+	free(split);
 
 	ite = 0;
 	split = test_ex(string2, charset);
 	printf("\nOur original string: %s\n", string2);
 	printf("Our separators: %s\n", charset);
-	while (ite < 4)
+	while (split[ite])
 	{
 		printf("Our string: \n%s\n", split[ite]);
 		printf("Should be identical to: \n%s\n", array_of_arrays[ite]);
@@ -360,12 +371,12 @@ void	test_ex5(char **(*test_ex)(char *, char *))
 	split = test_ex(string3, charset);
 	printf("\nOur original string: %s\n", string3);
 	printf("Our separators: %s\n", charset);
-	while (ite < 1)
+	while (split[ite])
 	{
 		printf("Our string: \n%s\n", split[ite]);
-		printf("Should be identical to: \n%s\n", string3);
+		printf("Should be identical to: \n%s\n\n", array_of_arrays[ite]);
 
-		assert(strcmp(string3, split[ite]) == 0);
+		assert(strcmp(array_of_arrays[ite], split[ite]) == 0);
 		free(split[ite]);
 
 		ite++;
@@ -380,8 +391,8 @@ void	test_ex5(char **(*test_ex)(char *, char *))
 	printf("Should be identical to: \n%s\n", string2);
 	assert(strcmp(string2, split[ite]) == 0);
 
-	free(array_of_arrays);
 	free(split);
+	free(array_of_arrays);
 	printf("\nTests Ex5 Passed!\n\n");
 }
 
