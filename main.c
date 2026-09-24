@@ -139,14 +139,13 @@ void	test_ex2(int (*test_ex)(int **, int, int))
 		printf("%i, ", pointer_to_array2[ite]);
 		ite++;
 	}
-
+	free(pointer_to_array1);
 	printf("\nChecking Null Pointers...\n");
 	assert(test_ex(&pointer_to_array1, 4, 4) == 0);
 	assert(test_ex(&pointer_to_array1, 4, 4) == 0);
 	assert(test_ex(&pointer_to_array1, 5, -264) == 0);
 	free(array1);
 	free(array2);
-	free(pointer_to_array1);
 	free(pointer_to_array2);
 
 	printf("\nTests Ex2 Passed!\n\n");
@@ -209,6 +208,7 @@ void	test_ex4(char *(*test_ex)(char *, char *, char *))
 	printf("Our original number: %s\n", nbr);
 	printf("Our converted number: %s\n\n", converted_nbr);
 	assert(strcmp(converted_nbr, "111") == 0);
+	free(converted_nbr);
 
 	char nbr2[4] = "-6f";
 
@@ -218,6 +218,7 @@ void	test_ex4(char *(*test_ex)(char *, char *, char *))
 	printf("Our original number: %s\n", nbr2);
 	printf("Our converted number: %s\n\n", converted_nbr);
 	assert(strcmp(converted_nbr, "-111") == 0);
+	free(converted_nbr);
 
 	char nbr3[4] = "+6f";
 
@@ -227,6 +228,7 @@ void	test_ex4(char *(*test_ex)(char *, char *, char *))
 	printf("Our original number: %s\n", nbr3);
 	printf("Our converted number: %s\n\n", converted_nbr);
 	assert(strcmp(converted_nbr, "111") == 0);
+	free(converted_nbr);
 
 
 	converted_nbr = test_ex("-6f", "0123456789abcdef", "0123456789ABCDEF");
@@ -235,6 +237,7 @@ void	test_ex4(char *(*test_ex)(char *, char *, char *))
 	printf("Our original number: %s\n", "-6f");
 	printf("Our converted number: %s\n\n", converted_nbr);
 	assert(strcmp(converted_nbr, "-6F") == 0);
+	free(converted_nbr);
 
 
 	converted_nbr = test_ex("-b6f", "0123456789abcdef", "0123456789ABCDEF");
@@ -243,6 +246,7 @@ void	test_ex4(char *(*test_ex)(char *, char *, char *))
 	printf("Our original number: %s\n", "-b6f");
 	printf("Our converted number: %s\n\n", converted_nbr);
 	assert(strcmp(converted_nbr, "-B6F") == 0);
+	free(converted_nbr);
 
 	converted_nbr = test_ex("&#", "@#*()$^&", "413J");
 	printf("Our original base: %s\n", "@#*()$^&");
@@ -250,6 +254,7 @@ void	test_ex4(char *(*test_ex)(char *, char *, char *))
 	printf("Our original number: %s\n", "&#");
 	printf("Our converted number: %s\n\n", converted_nbr);
 	assert(strcmp(converted_nbr, "J31") == 0);
+	free(converted_nbr);
 
 	char nbr5[33] = "01111111111111111111111111111111";
 	char base_from2[3] = "01";
@@ -261,6 +266,7 @@ void	test_ex4(char *(*test_ex)(char *, char *, char *))
 	printf("Our original number: %s\n", nbr5);
 	printf("Our converted number: %s\n\n", converted_nbr);
 	assert(strcmp(converted_nbr, "2147483647") == 0);
+	free(converted_nbr);
 
 	char nbr6[35] = "-10000000000000000000000000000000";
 
@@ -270,6 +276,7 @@ void	test_ex4(char *(*test_ex)(char *, char *, char *))
 	printf("Our original number: %s\n", nbr6);
 	printf("Our converted number: %s\n\n", converted_nbr);
 	assert(strcmp(converted_nbr, "-2147483648") == 0);
+	free(converted_nbr);
 
 	char base_from3[4] = "01\t";
 	char base_to3[11] = "0123456789";
@@ -390,6 +397,7 @@ void	test_ex5(char **(*test_ex)(char *, char *))
 	printf("Our string: \n%s\n", split[ite]);
 	printf("Should be identical to: \n%s\n", string2);
 	assert(strcmp(string2, split[ite]) == 0);
+	free(split[0]);
 
 	free(split);
 	free(array_of_arrays);
