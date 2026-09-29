@@ -141,9 +141,9 @@ void	test_ex2(int (*test_ex)(int **, int, int))
 	}
 	free(pointer_to_array1);
 	printf("\nChecking Null Pointers...\n");
-	assert(test_ex(&pointer_to_array1, 4, 4) == 0);
-	assert(test_ex(&pointer_to_array1, 4, 4) == 0);
-	assert(test_ex(&pointer_to_array1, 5, -264) == 0);
+	assert(test_ex(&pointer_to_array1, 4, 4) == NULL);
+	assert(test_ex(&pointer_to_array1, 4, 4) == NULL);
+	assert(test_ex(&pointer_to_array1, 5, -264) == NULL);
 	free(array1);
 	free(array2);
 	free(pointer_to_array2);
